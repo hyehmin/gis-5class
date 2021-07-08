@@ -2,10 +2,14 @@
 
 {% block content %}
 
-{#    overflow : hidden -> 넘치는 것 숨겨줌 , scroll : 스크롤을 통해 내려가면서 알 수 있음#}
+{#  overflow : hidden -> 넘치는 것 숨겨줌 , scroll : 스크롤을 통해 내려가면서 알 수 있음##}
     <div style="margin: 2rem; text-align: center">
         <h1>METHOD</h1>
 
+        <form action="/accounts/hello_world/" method="post">
+            {% csrf_token %}
+            <input class="btn btn-dark rounded-pill px-4", type="submit">
+        </form>
         <h3>{{ text }}</h3>
     </div>
 
