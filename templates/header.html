@@ -5,15 +5,18 @@
     <div>
         <span>nav1</span>
         <span>nav2</span>
+        {% if not user.is_authenticated %}
         <span>
             <a href="{% url 'accountapp:login' %}">
                 Login
             </a>
         </span>
+        {% else %}
         <span>
             <a href="{% url 'accountapp:create' %}">
                 SignUp
             </a>
         </span>
+        {% endif %}
     </div>
 </div>
