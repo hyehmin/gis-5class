@@ -13,7 +13,7 @@
                     {{ target_user.profile.nickname }}
                         {% if target_user == user %}
                         <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}"
-                            class="meterial-icons round_button">
+                            class="material-icons round_button">
                             edit
                         </a>
                         {% endif %}
@@ -27,22 +27,17 @@
             </h2>
             {% endif %}
         </div>
-        <div>
-            {{ target_user.date_joined }}
-        </div>
         {% if user == target_user %}
         <div>
-            <a href="{% url 'accountapp:update' pk=target_user.pk%}">
-                Update Info
+            <a href="{% url 'accountapp:update' pk=target_user.pk%}"
+            class="meterial icons round_button mx-2">
+                Settings
             </a>
-
+            <a href="{% url 'accountapp:delete' pk=target_user.pk%}"
+                class="meterial icons round_button mx-2">
+                    close
+            </a>
         </div>
-    <div>
-        <a href="{% url 'accountapp:delete' pk=target_user.pk%}">
-            Quit
-        </a>
-
-    </div>
     {% endif %}
     </div>
 
