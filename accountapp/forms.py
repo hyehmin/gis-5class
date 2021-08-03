@@ -1,8 +1,9 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm
+
+from articleapp.models import Article
 
 
-class AccountCreationForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.fields['username'].disabled = True
+class ArticleCreationForm(ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'image', 'content']
