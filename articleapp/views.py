@@ -32,3 +32,9 @@ class ArticleUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
+
+class ArticleDeleteView(DeleteView):
+    model = Article
+    context_object_name = 'target_article'
+    success_url = reverse_lazy('articleapp:list')
+    template_name = 'articleapp:delete.html'
