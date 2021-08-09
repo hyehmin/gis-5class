@@ -1,45 +1,37 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
-    <div class="text-center mw-500 m-auto">
-        <div class="m-5">
-            {% if target_user_profile %}
-                <img src="{{ target_user.profile.image.url }}"
-                     class="profile_image m-4"
-                     alt = "profile image">
-                <h4 class="NNS_B">
-                    {{ target_user.profile.nickname }}
-                        {% if target_user == user %}
-                        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}"
-                            class="material-icons round_button">
-                            edit
-                        </a>
-                        {% endif %}
-                </h4>
-                <h5>{{ target_user.profile.message }}</h5>
-            {% else %}
-            <h2>
-                <a href="{% url 'profileapp:create' %}">
-                    Create Profile
+    <div class = "container text-center">
+        <div class="my-5">
+            <h1 class="NNS_B">{{ target_article.title }}</h1>
+            <h3>{{ target_article.writer.profile.nickname }}</h3>
+            <p>{{ target_article.created_at }}</p>
+        </div>
+
+        <hr>
+        <div class="my-5">
+            <img src="{{ target_article.image.url }}" alt=""
+             class="article_image">
+            <div class="article_content">
+                {{ target_article.content }}
+            </div>
+            {% if target_article.writer == user %}
+            <div>
+                <a href="{% url 'articleapp:update' pk=target_article.pk%}"
+                 class="btn btn-success rounded_pill px-5">
+                    Update
                 </a>
-            </h2>
+                <a href="{% url 'articleapp:delete' pk=target_article.pk%}"
+                 class="btn btn-danger rounded_pill px-5">
+                    Delete
+                </a>
+            </div>
             {% endif %}
         </div>
-        {% if user == target_user %}
-        <div>
-            <a href="{% url 'accountapp:update' pk=target_user.pk%}"
-            class="meterial icons round_button mx-2">
-                Settings
-            </a>
-            <a href="{% url 'accountapp:delete' pk=target_user.pk%}"
-                class="meterial icons round_button mx-2">
-                    close
-            </a>
+        <hr>
+        <div class="text-center my-4">
+            {% include 'commentapp/create.html' %}
         </div>
-    {% endif %}
     </div>
-
-
 {% endblock %}
